@@ -120,7 +120,8 @@ void              netbios_session_destroy(netbios_session *s)
 }
 
 int netbios_session_connect(uint32_t ip, netbios_session *s,
-                            const char *name, int direct_tcp)
+                            const char *name, int direct_tcp,
+                            uint16_t netbios_direct_port, uint16_t netbios_secondary_port)
 {
     ssize_t                   recv_size;
     char                      *encoded_name = NULL;
@@ -132,8 +133,8 @@ int netbios_session_connect(uint32_t ip, netbios_session *s,
 
     if (direct_tcp)
     {
-        ports[0] = htons(NETBIOS_PORT_DIRECT);
-        ports[1] = htons(NETBIOS_PORT_DIRECT_SECONDARY);
+        ports[0] = htons(netbios_direct_port);
+        ports[1] = htons(netbios_secondary_port);
         nb_ports = 2;
     }
     else

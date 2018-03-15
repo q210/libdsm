@@ -71,7 +71,9 @@ void              netbios_session_destroy(netbios_session *);
 int               netbios_session_connect(uint32_t ip,
         netbios_session *s,
         const char *name,
-        int direct_tcp);
+        int direct_tcp,
+        uint16_t netbios_direct_port, 
+        uint16_t netbios_secondary_port);
 void              netbios_session_packet_init(netbios_session *s);
 int               netbios_session_packet_append(netbios_session *s,
         const char *data, size_t size);

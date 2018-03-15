@@ -41,16 +41,20 @@
 
 int               transport_connect_nbt(uint32_t ip,
                                         netbios_session *s,
-                                        const char *name)
+                                        const char *name,
+                                        uint16_t netbios_direct_port, 
+                                        uint16_t netbios_secondary_port)
 {
-    return netbios_session_connect(ip, s, name, 0);
+    return netbios_session_connect(ip, s, name, 0, netbios_direct_port, netbios_secondary_port);
 }
 
 int               transport_connect_tcp(uint32_t ip,
                                         netbios_session *s,
-                                        const char *name)
+                                        const char *name,
+                                        uint16_t netbios_direct_port, 
+                                        uint16_t netbios_secondary_port)
 {
-    return netbios_session_connect(ip, s, name, 1);
+    return netbios_session_connect(ip, s, name, 1, netbios_direct_port, netbios_secondary_port);
 }
 
 void              smb_transport_nbt(smb_transport *tr)

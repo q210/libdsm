@@ -150,7 +150,7 @@ int main(int ac, char **av)
 
   //inet_aton("192.168.110.138", &addr.sin_addr);
 
-  if (smb_session_connect(session, host, addr.sin_addr.s_addr, SMB_TRANSPORT_TCP)
+  if (smb_session_connect(session, host, addr.sin_addr.s_addr, SMB_TRANSPORT_TCP, 445, 139)
       == DSM_SUCCESS)
   {
     printf("Successfully connected to %s\n", host);

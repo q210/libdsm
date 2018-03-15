@@ -127,7 +127,8 @@ void            smb_session_set_creds(smb_session *s, const char *domain,
 }
 
 int             smb_session_connect(smb_session *s, const char *name,
-                                    uint32_t ip, int transport)
+                                    uint32_t ip, int transport,
+                                    uint16_t direct_port, uint16_t secondary_port)
 {
     assert(s != NULL && name != NULL);
 
@@ -148,7 +149,7 @@ int             smb_session_connect(smb_session *s, const char *name,
 
     if ((s->transport.session = s->transport.new(SMB_DEFAULT_BUFSIZE)) == NULL)
         return DSM_ERROR_GENERIC;
-    if (!s->transport.connect(ip, s->transport.session, name))
+    if (!s->transport.connect(ip, s->transport.session, name, direct_port, secondary_port))
         return DSM_ERROR_NETWORK;
 
     memcpy(s->srv.name, name, strlen(name) + 1);
